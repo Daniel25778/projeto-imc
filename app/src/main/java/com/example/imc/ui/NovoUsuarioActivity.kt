@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import androidx.core.graphics.drawable.toBitmap
 import com.example.imc.R
 import com.example.imc.model.Usuario
 import com.example.imc.utils.convertBitmapToBase64
@@ -49,6 +50,7 @@ class NovoUsuarioActivity : AppCompatActivity() {
         tvTrocarFoto = findViewById(R.id.tv_trocar_foto)
         ivFotoPerfil = findViewById(R.id.iv_foto_perfil)
 
+        imageBitmap = resources.getDrawable(R.drawable.person_24).toBitmap()
 
         supportActionBar!!.title = "Novo usuário"
 
@@ -136,6 +138,8 @@ class NovoUsuarioActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (validarCampos()) {
+
+
             // Criar o objeto usuario
             val nascimento = convertStringToLocalDate(editDataNascimento.text.toString())
 
@@ -181,6 +185,9 @@ class NovoUsuarioActivity : AppCompatActivity() {
             editor.putString("sexo", usuario.sexo.toString())
             editor.putString("fotoPerfil", usuario.fotoPerfil)
             editor.apply()
+
+           val paginaLogin = Intent(this, LoginActivity::class.java)
+           startActivity(paginaLogin)
 
         }
 

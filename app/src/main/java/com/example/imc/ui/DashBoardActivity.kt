@@ -1,12 +1,16 @@
 package com.example.imc.ui
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.example.imc.R
+import com.example.imc.utils.calcularIdade
 import com.example.imc.utils.convertBase64ToBitmap
+import java.time.LocalDate
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -18,6 +22,8 @@ class DashBoardActivity : AppCompatActivity() {
     lateinit var tvIdade : TextView
     lateinit var tvAltura : TextView
     lateinit var tvPerfil : ImageView
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +42,13 @@ class DashBoardActivity : AppCompatActivity() {
 
         carregarDashboard()
 
+        val cardViewDashPeso = findViewById<CardView>(R.id.cardViewDashPeso)
+
+        cardViewDashPeso.setOnClickListener {
+            val peso = Intent(this, PesoActivity::class.java)
+            startActivity(peso)
+        }
+
     }
 
     private fun  carregarDashboard() {
@@ -46,10 +59,13 @@ class DashBoardActivity : AppCompatActivity() {
         tvProfissao.text = arquivo.getString("profissao", "")
         tvAltura.text = arquivo.getFloat("altura", 0.0f).toString()
 
+        tvIdade.text = calcularIdade(arquivo.getString("dataNascimento", "")!!).toString()
+
         val bitmap = convertBase64ToBitmap(arquivo.getString("fotoPerfil","")!!)
         tvPerfil.setImageBitmap(bitmap)
 
 
     }
+
 
 }

@@ -22,8 +22,8 @@
             android:padding="10dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 app:cardBackgroundColor="@color/main_red"
                 app:cardCornerRadius="60dp">
 

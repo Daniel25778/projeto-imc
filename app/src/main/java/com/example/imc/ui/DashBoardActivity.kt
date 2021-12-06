@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.imc.R
+import com.example.imc.repository.PesagemRepository
 import com.example.imc.utils.calcularIdade
 import com.example.imc.utils.convertBase64ToBitmap
 import java.time.LocalDate
@@ -22,6 +24,7 @@ class DashBoardActivity : AppCompatActivity() {
     lateinit var tvIdade : TextView
     lateinit var tvAltura : TextView
     lateinit var tvPerfil : ImageView
+    lateinit var cardHistorico : CardView
 
 
 
@@ -38,6 +41,8 @@ class DashBoardActivity : AppCompatActivity() {
         tvIdade = findViewById(R.id.dash_idade)
         tvAltura = findViewById(R.id.dash_altura)
         tvPerfil = findViewById(R.id.iv_dash_foto_perfil)
+        cardHistorico = findViewById(R.id.cardView_historico)
+
 
 
         carregarDashboard()
@@ -48,6 +53,13 @@ class DashBoardActivity : AppCompatActivity() {
             val peso = Intent(this, PesoActivity::class.java)
             startActivity(peso)
         }
+
+        cardHistorico.setOnClickListener{
+
+            val intent = Intent(this, HistoricoActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

@@ -53,14 +53,7 @@ class PesoActivity : AppCompatActivity() {
             Toast.makeText(this, "Peso Registrado com sucesso!", Toast.LENGTH_SHORT).show()
             finish()
 
-
-
-
-
-        }
-
-
-
+           }
 
         }
 }
